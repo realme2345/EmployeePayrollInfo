@@ -8,7 +8,7 @@ namespace EmplyeePayroll
 {
     class Employeemodel
     {
-        public int EmployeeID { get; set; }//Decalring the values
+        public int EmployeeID { get; set; } //Decalring the values
         public string EmployeeName { get; set; }
         public string  StartDate { get; set; }
         public double BasicPay { get; set; }

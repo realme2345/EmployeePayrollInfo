@@ -1,5 +1,5 @@
-﻿CREATE PROCEDURE spUpdatePerson
-@Id int,
-@BasePay float
+﻿CREATE PROCEDURE spDeletePerson
+@Id varchar(200),
+@Name varchar(200)
 AS
-UpDATE Employee_payrollinfo set Basepay=@Basepay where @Id=Id;
+DELETE from Employee_payrollinfo where Id=@Id and Name=@Name;

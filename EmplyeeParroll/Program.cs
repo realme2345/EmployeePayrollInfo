@@ -13,8 +13,8 @@ namespace EmplyeePayroll
             //EmployeeRepository.GetAllEmployee();
             Employeemodel model=new Employeemodel();
             model.EmployeeID =3;
-            model.BasicPay = 600000;
-            EmployeeRepository.UpdatePerson(model);
+            model.EmployeeName = "Rasi";
+            EmployeeRepository.DeletePerson(model);
 
         }
     }
