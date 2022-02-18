@@ -87,5 +87,35 @@ namespace EmplyeePayroll
                 connection.Close();
             }
         }
+        public static void UpdatePerson(Employeemodel model)
+        {
+            try
+            {
+                using (connection)
+                {
+                    Employeemodel displaymodel=new Employeemodel();
+                    SqlCommand command = new SqlCommand("dbo.spUpdatePerson", connection);
+                    command.CommandType=CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Id",model.EmployeeID);
+                    command.Parameters.AddWithValue("BasePay", model.BasicPay);
+                    command.Parameters.AddWithValue("Department", model.Department);
+                    connection.Open();
+                    var result = command.ExecuteNonQuery();
+                    if (result != 0)
+                    {
+                        Console.WriteLine("Succefully Inserted a Record");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Unsuccessfull");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                connection.Close();
+            }
+        }
     }
 }

@@ -1,10 +1,7 @@
-﻿CREATE PROCEDURE spAdDEmployee
-@Name varchar(200),
-@Address varchar(200),
+﻿CREATE PROCEDURE spUpdatePerson
+@Id int,
 @BasePay float,
-@Department varchar(200),
-@Gender char(1),
-@StartDate date
+@Department varchar(200)
 AS
-insert into Employee_payrollinfo(Name,Address,Basepay,Department,Gender,StartDate)
-values(@Name,@Address,@BasePay,@Department,@Gender,@StartDate);
+insert into Employee_payrollinfo(Id,Basepay,Department)
+values(@Id,@BasePay,@Department);
