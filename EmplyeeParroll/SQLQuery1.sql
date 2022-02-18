@@ -1,7 +1,5 @@
 ﻿CREATE PROCEDURE spUpdatePerson
 @Id int,
-@BasePay float,
-@Department varchar(200)
+@BasePay float
 AS
-insert into Employee_payrollinfo(Id,Basepay,Department)
-values(@Id,@BasePay,@Department);
+UpDATE Employee_payrollinfo set Basepay=@Basepay where @Id=Id;

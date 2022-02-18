@@ -14,7 +14,6 @@ namespace EmplyeePayroll
             Employeemodel model=new Employeemodel();
             model.EmployeeID =3;
             model.BasicPay = 600000;
-            model.Department = "TE";
             EmployeeRepository.UpdatePerson(model);
 
         }

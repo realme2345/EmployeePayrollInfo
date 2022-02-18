@@ -98,7 +98,6 @@ namespace EmplyeePayroll
                     command.CommandType=CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@Id",model.EmployeeID);
                     command.Parameters.AddWithValue("BasePay", model.BasicPay);
-                    command.Parameters.AddWithValue("Department", model.Department);
                     connection.Open();
                     var result = command.ExecuteNonQuery();
                     if (result != 0)
