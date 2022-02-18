@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace EmplyeePayroll
         /// Reading the data from the SQL datbase
         /// </summary>
         public static string ConnectingString = "Data Source=DESKTOP-I8QS7VH\\SQLEXPRESS;Initial Catalog=EmployeepayrollInfo;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public static SqlConnection connection = new SqlConnection(ConnectingString);
+
         public static void GetAllEmployee() //this method is used for the reading the data
         {
             try
@@ -50,6 +53,38 @@ namespace EmplyeePayroll
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+        public static void AddEmployee(Employeemodel model)
+        {
+            try
+            {
+                using (connection)
+                {
+                    SqlCommand command = new SqlCommand("dbo.spAddEmployee", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Name", model.EmployeeName);
+                    command.Parameters.AddWithValue("@Address", model.Address);
+                    command.Parameters.AddWithValue("@BasePay", model.BasicPay);
+                    command.Parameters.AddWithValue("Department", model.Department);
+                    command.Parameters.AddWithValue("Gender",model.Gender);
+                    command.Parameters.AddWithValue("StartDate", model.StartDate);
+                    connection.Open();
+                    var result=command.ExecuteNonQuery();
+                    if(result != 0)
+                    {
+                        Console.WriteLine("Succefully Inserted a Record");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Unsuccessfull");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                connection.Close();
             }
         }
     }
