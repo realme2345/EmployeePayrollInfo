@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE spInsertdata
+﻿CREATE PROCEDURE spInsertData
 @Name varchar(200),
 @Address varchar(200),
 @BasePay float,

@@ -15,7 +15,10 @@ namespace EmplyeePayroll
             //model.EmployeeID =3;
             //model.EmployeeName = "Rasi";
             //EmployeeRepository.DeletePerson(model);
-            EmployeeRepository.InsertIntoTable();
+            //EmployeeRepository.InsertIntoTable();
+            EmployeeRepository.SumOfNetplay(model);
+            EmployeeRepository.MaxValueOfBasedOnGender(model);
+            EmployeeRepository.MinValueOfBasedOnGender(model);
 
         }
     }
