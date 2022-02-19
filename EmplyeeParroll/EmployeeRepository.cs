@@ -145,5 +145,14 @@ namespace EmplyeePayroll
                 connection.Close();
             }
         }
+        public static void InsertIntoTable()
+        {
+            SqlCommand command = connection.CreateCommand();
+            connection.Open();
+            command.CommandText = "insert into Employee_PayrollInfo(Name,Address,Gender)values('Lavanya','bingi','F')";
+            command.ExecuteNonQuery();
+            command.CommandText = "insert into Employee_PayrollInfo(Name,Address,Gender)values('Lavanya','bingi','F')";
+            command.ExecuteNonQuery();
+        }
     }
 }

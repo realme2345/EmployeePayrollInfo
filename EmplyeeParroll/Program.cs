@@ -12,9 +12,10 @@ namespace EmplyeePayroll
         {
             //EmployeeRepository.GetAllEmployee();
             Employeemodel model=new Employeemodel();
-            model.EmployeeID =3;
-            model.EmployeeName = "Rasi";
-            EmployeeRepository.DeletePerson(model);
+            //model.EmployeeID =3;
+            //model.EmployeeName = "Rasi";
+            //EmployeeRepository.DeletePerson(model);
+            EmployeeRepository.InsertIntoTable();
 
         }
     }
