@@ -1,10 +1,9 @@
-﻿CREATE PROCEDURE spInsertData
-@Name varchar(200),
-@Address varchar(200),
-@BasePay float,
-@Department varchar(200),
-@Gender char(1),
+﻿CREATE PROCEDURE spEmpData
+@EmpId bigint,
+@CompanyId varchar(200),
+@EmpName varchar(200),
+@EmpPhno varchar(200),
 @StartDate date
 AS
-insert into Employee_payrollinfo(Name,Address,Basepay,Department,Gender,PhoneNumber,StartDate)
-values(@Name,@Address,@BasePay,@Department,@Gender,@PhoneNumber,@StartDate);
+INSERT INTO EmployeeInfo(EmpId,CompanyId,EmpName,EmpPhno,StartDate)
+values(@EmpId,@CompanyId,@EmpName,@EmpPhno,@StartDate);
