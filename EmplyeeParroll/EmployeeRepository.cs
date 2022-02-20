@@ -214,5 +214,90 @@ namespace EmplyeePayroll
                 }
             }
         }
+        /// <summary>
+        /// Insert the values with transaction queries with stored procedure
+        /// </summary>
+        /// <param name="model"></param>
+        public static void InsertValuesToTheTransactionQueries(Employeemodel model)
+        {
+            SqlConnection connection = new SqlConnection(ConnectingString);
+            connection.Open();
+            //start the local connection
+            SqlTransaction sqlTran = connection.BeginTransaction();
+            //enlist a command in the current transaction
+            SqlCommand command = connection.CreateCommand();
+            try
+            {
+                //execute two saparate commands
+                command = new SqlCommand("dbo.spEmpdata", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@empid", model.EmployeeID);
+                command.Parameters.AddWithValue("@companyid", model.ComapanyId);
+                command.Parameters.AddWithValue("@empname", model.EmployeeName);
+                command.Parameters.AddWithValue("@empphno", model.PhoneNumber);
+                command.Parameters.AddWithValue("@startdate", model.StartDate);
+                //command.parameters.add("@id",sqldbtype.int).direction = parameterdirection.output;
+                command.Transaction = sqlTran;
+                command.ExecuteScalar();
+                //string id=command.parameters["@id"].value.tostring();
+                //int newid=convert.toint32(id);
+                command = new SqlCommand("dbo.spinsertdepartmentinfo", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@departid", model.DepartId);
+                command.Parameters.AddWithValue("@empid", model.EmployeeID);
+                command.Parameters.AddWithValue("@depertname", model.Department);
+                command.Transaction = sqlTran;
+                command.ExecuteScalar();
+                sqlTran.Commit();
+                Console.WriteLine("both the records written to database");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                try
+                {
+                    sqlTran.Rollback();
+                }
+                catch (Exception exrollback)
+                {
+                    Console.WriteLine(exrollback.Message);
+                }
+            }
+        }
+        /// <summary>
+        /// Insert the values with transaction queries with stored procedure
+        /// </summary>
+        public static void InsertTransactionQueryWithoutStoredProcedure()
+        {
+            //execute two saparate commands
+            SqlConnection connection = new SqlConnection(ConnectingString);
+            connection.Open();
+            SqlTransaction sqlTran = connection.BeginTransaction();
+            SqlCommand command = connection.CreateCommand();
+            command.Transaction = sqlTran;
+            try
+            {
+                command.CommandText = "insert into EmployeeInfo(EmpId,CompanyId,EmpName,EmpPhno,StartDate)values(20133346,2022,'Narmada',9384738228,'3-4-2019')";
+                var result=command.ExecuteScalar();
+                Console.WriteLine("The values inserted Succefully");
+                command.CommandText = "insert into DepartmentInfo(DepartId,EmpId,DepertName)values(5,20133345,'SET')";
+                var re=command.ExecuteNonQuery();
+                Console.WriteLine("Both the records inserted succefully");
+                sqlTran.Commit();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                try
+                {
+                    sqlTran.Rollback();
+                }
+                catch (Exception exRollback)
+                {
+                    Console.WriteLine(exRollback.Message);
+                }
+            }
+        }
+        
     }
 }

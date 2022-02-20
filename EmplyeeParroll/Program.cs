@@ -16,10 +16,17 @@ namespace EmplyeePayroll
             //model.EmployeeName = "Rasi";
             //EmployeeRepository.DeletePerson(model);
             //EmployeeRepository.InsertIntoTable();
-            EmployeeRepository.SumOfNetplay(model);
-            EmployeeRepository.MaxValueOfBasedOnGender(model);
-            EmployeeRepository.MinValueOfBasedOnGender(model);
-
+            //EmployeeRepository.SumOfNetplay(model);
+            //EmployeeRepository.MaxValueOfBasedOnGender(model);
+            //EmployeeRepository.MinValueOfBasedOnGender(model);
+            EmployeeRepository.InsertValuesToTheTransactionQueries();
+            model.EmployeeID = 2013323;
+            model.ComapanyId = 2022;
+            model.EmployeeName ="Nari";
+            model.PhoneNumber = 894883894;
+            model.StartDate = "3-4-2019";
+            model.DepartId = 4;
+            model.Department = "SET";
         }
     }
 }

@@ -10,11 +10,13 @@ namespace EmplyeePayroll
     {
         public int EmployeeID { get; set; } //Decalring the values
         public string EmployeeName { get; set; }
+        public int ComapanyId { get; set; }
         public string  StartDate { get; set; }
         public double BasicPay { get; set; }
         public string Gender { get; set; }
         public double PhoneNumber { get; set; }
         public string Department { get; set; }
+        public int DepartId { get; set; }
         public string Address { get; set; }
         public double Taxablepay { get; set; }
     }
